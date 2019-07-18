@@ -5,14 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Web Components</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      --color-primary: rgb(175, 248, 255);
+      font-family: sans-serif;
+    }
+
+    /* sp-tooltip {
+      border: 1px solid blue;
+      padding: 0.15rem;
+    } */
+
+    /* sp-tooltip.important {
+      background: greenyellow;
+    } */
+
+    /* .highlight {
+      background-color: rgb(251, 229, 131);
+      border-bottom: 2px solid blue;
+    } */
+  </style>
   <script src="tooltip.js"></script>
   <script src="confirm-link.js"></script>
 </head>
 <body>
   <p>
-    <sp-tooltip text="Web Components is a set of standards.">Web Components</sp-tooltip> are awesome!
+    <sp-tooltip class="important" text="Web Components is a set of standards.">
+      <span class="highlight">Web Components</span>
+    </sp-tooltip> are awesome!
   </p>
-  <sp-tooltip>Here we go!</sp-tooltip>
+  <sp-tooltip></sp-tooltip>
   <a is ="sp-confirm-link" href="https://www.google.com">Link</a>
 </body>
 </html>
