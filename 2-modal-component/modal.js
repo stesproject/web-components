@@ -20,12 +20,16 @@ class Modal extends HTMLElement {
         :host([opened]) #backdrop,
         :host([opened]) #modal {
           opacity: 1;
-          pointer-events: none;
+          pointer-events: all;
+        }
+
+        :host([opened]) #modal {
+          top: 15vh;
         }
 
         #modal {
           position: fixed;
-          top: 15vh;
+          top: 10vh;
           left: 25%;
           width: 50%;
           z-index: 100;
@@ -37,14 +41,17 @@ class Modal extends HTMLElement {
           justify-content: space-between;
           opacity: 0;
           pointer-events: none;
+          transition: all 0.3s ease-out;
         }
 
         header {
           padding: 1rem;
+          border-bottom: 1px solid #ccc;
         }
 
         ::slotted(h1) {
           font-size: 1.25rem;
+          margin: 0;
         }
 
         #main {
@@ -71,8 +78,8 @@ class Modal extends HTMLElement {
           <slot></slot>
         </section>
         <section id="actions">
-          <button>Cancel</button>
-          <button>Okay</button>
+          <button id="cancel-btn">Cancel</button>
+          <button id="confirm-btn">Okay</button>
         </section>
       </div>
     `;
@@ -81,6 +88,13 @@ class Modal extends HTMLElement {
     slots[1].addEventListener("slotchange", event => {
       console.dir(slots[1].assignedNodes());
     });
+
+    const backdrop = this.shadowRoot.querySelector("#backdrop");
+    const cancelButton = this.shadowRoot.querySelector("#cancel-btn");
+    const confirmButton = this.shadowRoot.querySelector("#confirm-btn");
+    backdrop.addEventListener("click", this._cancel.bind(this));
+    cancelButton.addEventListener("click", this._cancel.bind(this));
+    confirmButton.addEventListener("click", this._confirm.bind(this));
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -94,6 +108,28 @@ class Modal extends HTMLElement {
   open() {
     this.setAttribute("opened", "");
     this.isOpen = true;
+  }
+
+  hide() {
+    if (this.hasAttribute("opened")) {
+      this.removeAttribute("opened");
+    }
+
+    this.isOpen = false;
+  }
+
+  _cancel(event) {
+    this.hide();
+    // Custom events: method #1
+    const cancelEvent = new Event("cancel", { bubbles: true, composed: true });
+    event.target.dispatchEvent(cancelEvent);
+  }
+
+  _confirm() {
+    this.hide();
+    // Custom events: method #2
+    const confirmEvent = new Event("confirm");
+    this.dispatchEvent(confirmEvent);
   }
 }
 
