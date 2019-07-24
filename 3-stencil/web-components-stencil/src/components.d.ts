@@ -14,6 +14,10 @@ export namespace Components {
     'opened': boolean;
     'title': string;
   }
+  interface SpTooltipToggle {
+    'opened': boolean;
+    'tooltip': string;
+  }
 }
 
 declare global {
@@ -24,8 +28,15 @@ declare global {
     prototype: HTMLSpSideDrawerElement;
     new (): HTMLSpSideDrawerElement;
   };
+
+  interface HTMLSpTooltipToggleElement extends Components.SpTooltipToggle, HTMLStencilElement {}
+  var HTMLSpTooltipToggleElement: {
+    prototype: HTMLSpTooltipToggleElement;
+    new (): HTMLSpTooltipToggleElement;
+  };
   interface HTMLElementTagNameMap {
     'sp-side-drawer': HTMLSpSideDrawerElement;
+    'sp-tooltip-toggle': HTMLSpTooltipToggleElement;
   }
 }
 
@@ -34,9 +45,14 @@ declare namespace LocalJSX {
     'opened'?: boolean;
     'title'?: string;
   }
+  interface SpTooltipToggle extends JSXBase.HTMLAttributes<HTMLSpTooltipToggleElement> {
+    'opened'?: boolean;
+    'tooltip'?: string;
+  }
 
   interface IntrinsicElements {
     'sp-side-drawer': SpSideDrawer;
+    'sp-tooltip-toggle': SpTooltipToggle;
   }
 }
 
