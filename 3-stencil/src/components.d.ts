@@ -14,9 +14,9 @@ export namespace Components {
     'opened': boolean;
     'title': string;
   }
+  interface SpStockPrice {}
   interface SpTooltipToggle {
-    'opened': boolean;
-    'tooltip': string;
+    'text': string;
   }
 }
 
@@ -29,6 +29,12 @@ declare global {
     new (): HTMLSpSideDrawerElement;
   };
 
+  interface HTMLSpStockPriceElement extends Components.SpStockPrice, HTMLStencilElement {}
+  var HTMLSpStockPriceElement: {
+    prototype: HTMLSpStockPriceElement;
+    new (): HTMLSpStockPriceElement;
+  };
+
   interface HTMLSpTooltipToggleElement extends Components.SpTooltipToggle, HTMLStencilElement {}
   var HTMLSpTooltipToggleElement: {
     prototype: HTMLSpTooltipToggleElement;
@@ -36,6 +42,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'sp-side-drawer': HTMLSpSideDrawerElement;
+    'sp-stock-price': HTMLSpStockPriceElement;
     'sp-tooltip-toggle': HTMLSpTooltipToggleElement;
   }
 }
@@ -45,13 +52,14 @@ declare namespace LocalJSX {
     'opened'?: boolean;
     'title'?: string;
   }
+  interface SpStockPrice extends JSXBase.HTMLAttributes<HTMLSpStockPriceElement> {}
   interface SpTooltipToggle extends JSXBase.HTMLAttributes<HTMLSpTooltipToggleElement> {
-    'opened'?: boolean;
-    'tooltip'?: string;
+    'text'?: string;
   }
 
   interface IntrinsicElements {
     'sp-side-drawer': SpSideDrawer;
+    'sp-stock-price': SpStockPrice;
     'sp-tooltip-toggle': SpTooltipToggle;
   }
 }

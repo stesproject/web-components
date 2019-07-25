@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <title>Stencil Side Drawer</title>
   <style>
     body {
       font-family: sans-serif;
@@ -21,12 +21,6 @@
       text-decoration: none;
       color: black;
     }
-
-    #side-drawer-btn {
-      background: black;
-      color: white;
-      position: absolute;
-    }
   </style>
 
   <script type="module" src="/build/web-components-stencil.esm.js"></script>
@@ -35,6 +29,7 @@
 </head>
 <body>
   <button id="side-drawer-btn">Open Side Menu</button>
+  <p>Let's see this new <sp-tooltip-toggle text="We built this before, now it is better!">Tooltip!</sp-tooltip-toggle></p>
   <sp-side-drawer title="Main Menu">
     <nav class="side-nav">
         <ul>
@@ -44,9 +39,6 @@
           </ul>
     </nav>
   </sp-side-drawer>
-  <br/>
-  <br/>
-  <sp-tooltip-toggle>Let's test this new Tooltip!</sp-tooltip-toggle>
 
   <script>
     const sideDrawerButton = document.querySelector("#side-drawer-btn");
