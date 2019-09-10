@@ -35,3 +35,10 @@ form button:active {
   background: rgb(119, 34, 119);
   border-color: rgb(119, 34, 119);
 }
+
+form button:disabled {
+  background: #ccc;
+  border-color: #ccc;
+  color: #fff;
+  cursor: auto;
+}
